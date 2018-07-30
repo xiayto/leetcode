@@ -1,0 +1,8 @@
+# Write your MySQL query statement below
+select D.Name as Department, E.Name as Employee, E.Salary
+from Department D, Employee E
+where E.DepartmentId = D.Id and (
+    select count(distinct Salary) From Employee 
+            where DepartmentId = d.Id and Salary > E.Salary
+                ) < 3
+order by Department
