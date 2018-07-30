@@ -1,0 +1,4 @@
+# Write your MySQL query statement below
+select e.Name as Employee
+from Employee e, Employee e_Manager
+where e_Manager.Id = e.ManagerId and e.Salary > e_Manager.Salary
