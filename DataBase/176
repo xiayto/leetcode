@@ -1,0 +1,13 @@
+# Write your MySQL query statement below
+select ifnull(
+    (select Salary from Employee
+     group by Salary
+     order by Salary desc
+     limit 1, 1
+    ), null
+) as SecondHighestSalary
+
+# IFNULL:如果第一个查询语句不会空返回第一个，否则返回第二个
+# group by:按...合并同内项
+# order by:按...排序，DESC降序
+# Limit：第一个是从哪开始查找，第二个查找几个
