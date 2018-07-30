@@ -1,0 +1,6 @@
+# Write your MySQL query statement below
+select W1.Id 
+from Weather W1, Weather W2
+where TO_DAYS(W1.RecordDate) = TO_DAYS(W2.RecordDate) + 1 
+and W1.Temperature > W2.Temperature
+order by Id
