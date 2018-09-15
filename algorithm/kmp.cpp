@@ -54,3 +54,53 @@ int main(){
     char b[] = "ll";
     cout<<strStr(a, b)<<endl;
 }
+
+
+// -----------------------------------------------------------------
+class StringPattern {
+public:
+    void getNext(string a, int next[])
+{// self match to contruct next array
+    int n = a.length();
+    int j = -1;     // slow pointer
+    int i = 0;      // fast pointer
+    next[i] = -1;    //init next has one element
+    while(i < n-1)
+    {
+        if(j == -1 || a[i] == a[j])
+        {
+            j ++;
+            i ++;           //thus the condition (i < nlen-1)
+            next[i] = j;    //if position i not match, jump to position j
+        }
+        else
+        {
+            j = next[j];    //jump to the previous position to try matching
+        }
+    }
+} 
+    int findAppearance(string A, int lena, string B, int lenb) {
+        // write code here
+        int next[lenb];
+        getNext(B, next);
+        int i = 0;
+        int j = 0;
+        while(i < lena && j < lenb)
+        {
+            if(j == -1 || A[i] == B[j])
+            {// match current position, go next
+                i ++;
+                j ++;
+            }
+            else
+            {// jump to the previous position to try matching
+                j = next[j];
+            }
+        }
+        if(j == lenb)
+        // all match
+        return i-lenb;
+        else
+        return -1;
+    }
+};
